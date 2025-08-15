@@ -1,0 +1,11 @@
+# Ignore le fichier des variables d’environnement
+.env
+
+# Ignore le dossier des dépendances Node.js
+node_modules/
+
+# Ignore les fichiers de log générés par npm
+npm-debug.log
+
+# Ignore les fichiers système macOS
+.DS_Store

@@ -1,0 +1,17 @@
+{
+  "name": "reverte-backend",
+  "version": "1.0.0",
+  "description": "API backend pour ReVerte – surveillance des îlots de chaleur urbains",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mqtt": "^5.13.1",
+    "pg": "^8.11.3"
+  }
+}
