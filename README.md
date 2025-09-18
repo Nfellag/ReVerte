@@ -87,18 +87,115 @@ backend/
 
 ---
 
-## Base des Données
-```
+## 🐘 Initialisation de la base de données PostgreSQL
 
-## 🛠️ Initialisation de la base de données PostgreSQL
+### 1. 📄 Création des tables et de l’utilisateur
 
-1. Assurez-vous que PostgreSQL est installé sur votre machine.
-2. Dans le terminal, exécutez :
+Le fichier `init_db.sql` fournit dans le projet permet de créer :
+
+- La base de données `reverte`
+- L’utilisateur `postgres` avec le mot de passe `postgres`
+- Les 4 tables nécessaires : `capteurs`, `mesures`, `alertes`, `utilisateurs`
+
+#### Étapes :
+
+1. Ouvrir un terminal
+2. Se placer dans le dossier `/backend`
+3. Lancer la commande suivante :
 
 ```bash
 psql -U postgres -f init_db.sql
+```
 
+4. Copier le fichier `.env.example` vers `.env` :
 
+```bash
+cp .env.example .env
+```
+
+5. Lancer le backend :
+
+```bash
+npm install
+npm start
+```
+
+---
+
+## 💻 Connexion à la base de données PostgreSQL (selon votre système)
+
+### 🔵 macOS (avec Homebrew ou Postgres.app)
+
+#### ➤ Vérifiez si `psql` est installé :
+
+```bash
+psql --version
+```
+
+Si la commande ne fonctionne pas, installez PostgreSQL avec Homebrew :
+
+```bash
+brew install postgresql
+brew services start postgresql
+```
+
+Ou utilisez Postgres.app : [https://postgresapp.com/](https://postgresapp.com/)
+
+#### ➤ Connectez-vous à PostgreSQL :
+
+```bash
+psql -U postgres
+```
+
+Si nécessaire, créez l’utilisateur :
+
+```bash
+createuser -s postgres
+```
+
+#### ➤ Connexion à la base déjà créée :
+
+```bash
+psql -U postgres -d reverte
+```
+
+#### ➤ Commandes utiles dans le prompt :
+
+```sql
+\c reverte;
+\d
+SELECT * FROM alertes;
+```
+
+---
+
+### 🟢 Windows / Linux
+
+#### ➤ Connectez-vous à PostgreSQL :
+
+```bash
+psql -U postgres
+```
+
+#### ➤ Exécutez le script de création si ce n’est pas encore fait :
+
+```bash
+psql -U postgres -f init_db.sql
+```
+
+#### ➤ Connexion à la base :
+
+```bash
+psql -U postgres -d reverte
+```
+
+#### ➤ Commandes utiles dans le prompt :
+
+```sql
+\c reverte;
+\d
+SELECT * FROM alertes;
+```
 
 
 ## 📄 Licence
