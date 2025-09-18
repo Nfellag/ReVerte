@@ -58,7 +58,7 @@ DB_NAME=reverte
 
 # Broker MQTT
 MQTT_BROKER=mqtt://broker.hivemq.com
-MQTT_TOPIC=reverte/capteurs/+
+MQTT_TOPIC=reverte/capteurs
 
 # Seuils critiques
 TEMP_THRESHOLD=30
@@ -86,6 +86,20 @@ backend/
 ```
 
 ---
+
+## Base des Données
+```
+
+## 🛠️ Initialisation de la base de données PostgreSQL
+
+1. Assurez-vous que PostgreSQL est installé sur votre machine.
+2. Dans le terminal, exécutez :
+
+```bash
+psql -U postgres -f init_db.sql
+
+
+
 
 ## 📄 Licence
 
