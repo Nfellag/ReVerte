@@ -1,11 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+
+
+dotenv.config();
+
+
 const sensorsRoutes = require('./routes/sensors');
 const alertesRoutes = require('./routes/alertes');
 require('./mqtt/mqttClient');
-
-dotenv.config();
 
 const app = express();
 app.use(cors());

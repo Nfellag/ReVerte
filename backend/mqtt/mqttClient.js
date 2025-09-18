@@ -1,16 +1,24 @@
+console.log("🧪 mqttClient.js chargé");
+
+console.log("🌱 Variables .env:", {
+  broker: process.env.MQTT_BROKER_URL,
+  topic: process.env.MQTT_TOPIC
+});
+
 const mqtt = require('mqtt');
-const dotenv = require('dotenv');
 const { checkThresholds } = require('../services/alerts');
 
-dotenv.config();
-
-const client = mqtt.connect(process.env.MQTT_BROKER);
+const client = mqtt.connect(process.env.MQTT_BROKER_URL);
 const topic = process.env.MQTT_TOPIC;
 
 client.on('connect', () => {
   console.log(`📡 Connecté au broker MQTT`);
   client.subscribe(topic, (err) => {
-    if (err) console.error('Erreur de souscription MQTT:', err);
+    if (err) {
+      console.error('❌ Erreur de souscription MQTT:', err);
+    } else {
+      console.log(`📶 Souscription au topic : ${topic}`);
+    }
   });
 });
 
