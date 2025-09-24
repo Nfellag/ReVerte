@@ -197,13 +197,6 @@ psql -U postgres -d reverte
 SELECT * FROM alertes;
 ```
 
-
-## 📄 Licence
-
-Projet ReVerte – à usage pédagogique uniquement.
-
----
-
 ## 🧪 Tester les alertes avec MQTT Explorer + HiveMQ
 
 Cette section explique comment simuler une alerte en utilisant MQTT Explorer connecté au broker public HiveMQ.
@@ -273,3 +266,11 @@ SELECT * FROM alertes ORDER BY date DESC LIMIT 5;
 ```
 
 Cela permet de confirmer que l'alerte a bien été enregistrée en base.
+
+
+
+## 📄 Licence
+
+Projet ReVerte – à usage pédagogique uniquement.
+
+---
