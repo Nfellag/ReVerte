@@ -118,12 +118,12 @@ Le frontend sera accessible sur :
 
 ### ✅ Résumé rapide
 
-Étape	Commande	Dossier
-Installer dépendances	npm install	ReVerte/
-Configurer .env	cp .env.example .env puis modifier	ReVerte/
-Créer BDD	psql -U postgres -f init_db.sql	ReVerte/
-Lancer backend	npm start	ReVerte/
-Lancer frontend	npm run frontend	ReVerte/
+- Étape	Commande	Dossier
+- Installer dépendances	npm install	ReVerte/
+- Configurer .env	cp .env.example .env puis modifier	ReVerte/
+- Créer BDD	psql -U postgres -f init_db.sql	ReVerte/
+- Lancer backend	npm start	ReVerte/
+- Lancer frontend	npm run frontend	ReVerte/
 
 ---
 
