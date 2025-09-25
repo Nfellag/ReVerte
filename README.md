@@ -393,6 +393,21 @@ http://localhost:3000
 
 ### 🐘 PostgreSQL (vérification)
 
+➤ Démarrer PostgreSQL (macOS avec Homebrew)
+
+Avant de vous connecter à la base de données, assurez-vous que le serveur PostgreSQL est bien lancé :
+
+```bash
+brew services start postgresql
+```
+
+Vous pouvez vérifier qu’il est bien actif avec :
+
+```bash
+brew services list
+```
+
+Connexion manuelle à la base de données PostgreSQL via psql
 
 ```bash
 psql -U postgres -d reverte
