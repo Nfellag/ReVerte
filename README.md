@@ -23,54 +23,106 @@ Elle permet de surveiller les **îlots de chaleur urbains** grâce à des capteu
 
 ---
 
-## 🛠️ Installation & lancement
+A ferramenta de edição direta no arquivo foi desativada no momento, então não consigo atualizar o README.md diretamente. No entanto, aqui está o conteúdo formatado que você pode colar no seu README.md na seção Première installation du projet:
 
-### 1. Cloner le projet
-```bash
+---
+
+## ✅ Première installation du projet ReVerte
+
+Voici les étapes à suivre après avoir téléchargé le projet pour la première fois.
+
+---
+
+### 📁 1. Cloner le dépôt et accéder au dossier
+
 git clone <url-du-repo>
-cd reverte
-```
+cd ReVerte
 
-### 2. Installer les dépendances
-```bash
+
+---
+
+### 📦 2. Installer toutes les dépendances (backend + mailer inclus)
+
 npm install
-```
 
-### 3. Variables d’environnement
-Copier le fichier `.env.example` vers `.env` puis renseigner les valeurs nécessaires.
+Cela installe également nodemailer, utilisé pour l’envoi d’e-mails d’alerte.
 
-```bash
-cp backend/.env.example backend/.env
-```
+---
 
-Exemple de configuration (`backend/.env`) :
-```env
+### ⚙️ 3. Créer et configurer le fichier .env
+
+Copier le fichier .env.example et le renommer :
+
+cp .env.example .env
+
+Puis, remplir le fichier .env avec ce contenu :
+
 PORT=3001
 
-# Base de données PostgreSQL
+# PostgreSQL
 DB_HOST=localhost
 DB_PORT=5432
 DB_USER=postgres
 DB_PASSWORD=postgres
 DB_NAME=reverte
 
-# Broker MQTT
-MQTT_BROKER=mqtt://broker.hivemq.com
+# MQTT
+MQTT_BROKER_URL=mqtt://broker.hivemq.com
 MQTT_TOPIC=reverte/capteurs
 
 # Seuils critiques
 TEMP_THRESHOLD=30
 HUMIDITY_THRESHOLD=80
-```
 
-### 4. Lancer le projet
-```bash
+# E-mail de l'application
+MAIL_USER=pharosi.raphael@gmail.com
+MAIL_PASS=aohk wama vhdv bghf
+MAIL_TO=pharosi.raphael@gmail.com,nourfellag@outlook.fr,rafikzeffane59@gmail.com,nene.almeida78@gmail.com
+
+
+---
+
+### 🐘 4. Créer la base de données PostgreSQL
+
+Le script init_db.sql permet de créer la base reverte avec les tables nécessaires :
+
+psql -U postgres -f init_db.sql
+
+✅ Cette étape crée également l’utilisateur postgres.
+⚠️ Déjà effectuée si vous avez récupéré une base prête. À faire uniquement si besoin.
+
+---
+
+### 🟢 5. Lancer le backend
+
+Dans le dossier ReVerte/ :
+
 npm start
-```
-👉 Cela lance **frontend + backend** en parallèle.  
 
-- Frontend accessible sur : [http://localhost:3000](http://localhost:3000)  
-- Backend accessible sur : [http://localhost:3001](http://localhost:3001)  
+Le backend sera accessible sur :
+👉 http://localhost:3001
+
+---
+
+### 🔵 6. Lancer le frontend
+
+Dans un autre terminal, dans le même dossier ReVerte/ :
+
+npm run frontend
+
+Le frontend sera accessible sur :
+👉 http://localhost:3000
+
+---
+
+### ✅ Résumé rapide
+
+Étape	Commande	Dossier
+Installer dépendances	npm install	ReVerte/
+Configurer .env	cp .env.example .env puis modifier	ReVerte/
+Créer BDD	psql -U postgres -f init_db.sql	ReVerte/
+Lancer backend	npm start	ReVerte/
+Lancer frontend	npm run frontend	ReVerte/
 
 ---
 
