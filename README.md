@@ -23,10 +23,6 @@ Elle permet de surveiller les **îlots de chaleur urbains** grâce à des capteu
 
 ---
 
-A ferramenta de edição direta no arquivo foi desativada no momento, então não consigo atualizar o README.md diretamente. No entanto, aqui está o conteúdo formatado que você pode colar no seu README.md na seção Première installation du projet:
-
----
-
 ## ✅ Première installation du projet ReVerte
 
 Voici les étapes à suivre après avoir téléchargé le projet pour la première fois.
