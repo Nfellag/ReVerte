@@ -288,5 +288,100 @@ Cela permet de confirmer que l'alerte a bien été enregistrée en base.
 
 ---
 
+Perfeito, obrigado pela atualização.
+Como frontend e backend estão agora juntos na même racine (ReVerte/), vou adaptar le résumé.
+
+Também vou explicar claramente que le backend écoute sur le port 3001 et le frontend sur le port 3000, ce qui est normal pour des apps fullstack en local.
+
+---
+
+## ✅ Résumé – Lancer l’application ReVerte (structure unifiée)
+
+### 💡 Prérequis :
+– npm install déjà exécuté
+– fichier .env bien rempli
+– base de données PostgreSQL initialisée (init_db.sql)
+
+---
+
+### 📦 Étape 1 – Lancer le backend (port 3001)
+
+📁 Dans le dossier ReVerte/ :
+
+cd ReVerte
+npm start
+
+	•	Cela démarre le backend Express.js
+	•	Terminal affiche :
+
+✅ Backend ReVerte démarré sur le port 3001
+📡 Connecté au broker MQTT
+
+
+
+---
+
+### 🌐 Étape 2 – Lancer le frontend (port 3000)
+
+📁 Dans le même dossier ReVerte/, ouvrir un deuxième terminal (ou un nouvel onglet) :
+
+npm run frontend
+
+Cela démarre le serveur React (Vite ou CRA selon config) sur http://localhost:3000
+
+⚠️ Assurez-vous que le script "frontend" est bien défini dans le package.json
+Sinon, lancez manuellement :
+
+cd ReVerte
+cd frontend
+npm install
+npm start
+
+
+---
+
+⚠️ Comment ça fonctionne ?
+	•	Le frontend (React) est sur http://localhost:3000
+	•	Il envoie les requêtes API vers le backend sur http://localhost:3001
+
+🔁 Cette séparation est normale : React est un client qui communique via HTTP avec le backend Express.
+
+---
+
+### 🐘 PostgreSQL (vérification)
+
+psql -U postgres -d reverte
+
+### Puis dans psql :
+
+SELECT * FROM alertes ORDER BY date DESC LIMIT 5;
+
+
+---
+
+## 🔁 Résumé rapide (Mac ou Windows)
+
+### ✅ Backend (Terminal 1)
+
+cd ReVerte
+npm start
+
+### ✅ Frontend (Terminal 2)
+
+cd ReVerte
+npm run frontend
+
+### ✅ PostgreSQL (vérification)
+
+psql -U postgres -d reverte
+
+### Puis dans psql :
+
+SELECT * FROM alertes ORDER BY date DESC LIMIT 5;
+
+### ✅ Tester les alertes avec MQTT Explorer + HiveMQ (instructions à la ligne 212)
+
+---
+
 ## 📄 Licence
 Projet ReVerte – à usage pédagogique uniquement.  
