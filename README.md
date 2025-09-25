@@ -352,13 +352,6 @@ Cela permet de confirmer que l'alerte a bien été enregistrée en base.
 
 ---
 
-Perfeito, obrigado pela atualização.
-Como frontend e backend estão agora juntos na même racine (ReVerte/), vou adaptar le résumé.
-
-Também vou explicar claramente que le backend écoute sur le port 3001 et le frontend sur le port 3000, ce qui est normal pour des apps fullstack en local.
-
----
-
 ## ✅ Résumé – Lancer l’application ReVerte (structure unifiée)
 
 ### 💡 Prérequis :
@@ -368,43 +361,25 @@ Também vou explicar claramente que le backend écoute sur le port 3001 et le fr
 
 ---
 
-### 📦 Étape 1 – Lancer le backend (port 3001)
+### 📦 Étape 1 – Lancer l’application (après installation)
 
-📁 Dans le dossier ReVerte/ :
+Une fois toutes les dépendances installées et la base de données PostgreSQL configurée :
+	1.	Ouvrez un terminal dans le dossier du projet (reverte/)
+	2.	Démarrez le backend et le frontend en une seule commande :
 
 ```bash
-cd ReVerte
 npm start
 ```
 
-	•	Cela démarre le backend Express.js
-	•	Terminal affiche :
+✅ Cette commande lance :
+	•	le backend (port 3001)
+	•	le frontend (port 3000)
 
-✅ Backend ReVerte démarré sur le port 3001
-📡 Connecté au broker MQTT
+	3.	Accédez à l’application dans votre navigateur :
 
+http://localhost:3000
 
-
----
-
-### 🌐 Étape 2 – Lancer le frontend (port 3000)
-
-📁 Dans le même dossier ReVerte/, ouvrir un deuxième terminal (ou un nouvel onglet) :
-
-npm run frontend
-
-Cela démarre le serveur React (Vite ou CRA selon config) sur http://localhost:3000
-
-⚠️ Assurez-vous que le script "frontend" est bien défini dans le package.json
-Sinon, lancez manuellement :
-
-
-```bash
-cd ReVerte
-cd frontend
-npm install
-npm start
-```
+	4.	Vérifiez le terminal pour voir les messages MQTT et les alertes si les capteurs envoient des données.
 
 ---
 
@@ -432,39 +407,7 @@ SELECT * FROM alertes ORDER BY date DESC LIMIT 5;
 
 ---
 
-## 🔁 Résumé rapide (Mac ou Windows)
-
-### ✅ Backend (Terminal 1)
-
-
-```bash
-cd ReVerte
-npm start
-```
-
-### ✅ Frontend (Terminal 2)
-
-
-```bash
-cd ReVerte
-npm run frontend
-```
-
-### ✅ PostgreSQL (vérification)
-
-
-```bash
-psql -U postgres -d reverte
-```
-
-### Puis dans psql :
-
-
-```sql
-SELECT * FROM alertes ORDER BY date DESC LIMIT 5;
-```
-
-### ✅ Tester les alertes avec MQTT Explorer + HiveMQ (instructions à la ligne 212)
+### ✅ Tester les alertes avec MQTT Explorer + HiveMQ (instructions à haut)
 
 ---
 
