@@ -9,7 +9,8 @@ import {
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 import { useColorMode } from "@chakra-ui/react";
-import logo from "../assets/logo_Reverte.svg";
+// import logo from "../assets/logo_Reverte.svg";
+const logo = process.env.PUBLIC_URL + "/logo_Reverte.svg";
 export default function Header() {
     const { colorMode, toggleColorMode } = useColorMode();
     const location = useLocation();

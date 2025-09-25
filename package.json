@@ -5,10 +5,10 @@
   "description": "ReVerte – Application fullstack de surveillance des îlots de chaleur urbains",
   "scripts": {
     "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
-    "start:frontend": "cd frontend && npm start",
-    "start:backend": "cd backend && npm start",
-    "build": "cd frontend && npm run build",
-    "test": "cd frontend && npm test"
+    "start:backend": "node index.js",
+    "start:frontend": "cross-env PORT=3000 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.2.4",
@@ -31,7 +31,8 @@
     "react-scripts": "5.0.1"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "cross-env": "^10.0.0"
   },
   "browserslist": {
     "production": [
