@@ -7,11 +7,20 @@ import theme from "./theme";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
-import DashboardPage from "./pages/DashboardPage";
+import DashboardPage from "./pages/HomePage";
 import HistoryPage from "./pages/HistoryPage";
+import HomePage from "./pages/HomePage";
 
 // Header
 import Header from "./components/Header";
+
+function ProtectedRoute({ children }) {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+}
 
 export default function App() {
   return (
@@ -19,21 +28,54 @@ export default function App() {
       <Router>
         <Header />
         <Routes>
-          {/* Redirection par défaut vers le dashboard */}
+          {/* Redirection par défaut */}
           <Route path="/" element={<Navigate to="/dashboard" />} />
 
           {/* Auth */}
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
 
-          {/* Profil */}
-          <Route path="/profile" element={<ProfilePage />} />
-
-          {/* Pages principales */}
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/history" element={<HistoryPage />} />
-          <Route path="/heatmap" element={<h1>Heatmap</h1>} />
-          <Route path="/zones" element={<h1>Zones</h1>} />
+          {/* Pages protégées */}
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/history"
+            element={
+              <ProtectedRoute>
+                <HistoryPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/heatmap"
+            element={
+              <ProtectedRoute>
+                <HomePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/zones"
+            element={
+              <ProtectedRoute>
+                <h1>Zones</h1>
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </Router>
     </ChakraProvider>
