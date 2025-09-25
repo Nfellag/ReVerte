@@ -35,15 +35,18 @@ Voici les étapes à suivre après avoir téléchargé le projet pour la premiè
 
 ### 📁 1. Cloner le dépôt et accéder au dossier
 
+```bash
 git clone <url-du-repo>
 cd ReVerte
-
+```
 
 ---
 
 ### 📦 2. Installer toutes les dépendances (backend + mailer inclus)
 
+```bash
 npm install
+```
 
 Cela installe également nodemailer, utilisé pour l’envoi d’e-mails d’alerte.
 
@@ -53,7 +56,9 @@ Cela installe également nodemailer, utilisé pour l’envoi d’e-mails d’ale
 
 Copier le fichier .env.example et le renommer :
 
+```bash
 cp .env.example .env
+```
 
 Puis, remplir le fichier .env avec ce contenu :
 
@@ -87,7 +92,9 @@ MAIL_TO=pharosi.raphael@gmail.com,nourfellag@outlook.fr,rafikzeffane59@gmail.com
 
 Le script init_db.sql permet de créer la base reverte avec les tables nécessaires :
 
+```bash
 psql -U postgres -f init_db.sql
+```
 
 ✅ Cette étape crée également l’utilisateur postgres.
 ⚠️ Déjà effectuée si vous avez récupéré une base prête. À faire uniquement si besoin.
@@ -98,7 +105,9 @@ psql -U postgres -f init_db.sql
 
 Dans le dossier ReVerte/ :
 
+```bash
 npm start
+```
 
 Le backend sera accessible sur :
 👉 http://localhost:3001
@@ -109,7 +118,9 @@ Le backend sera accessible sur :
 
 Dans un autre terminal, dans le même dossier ReVerte/ :
 
+```bash
 npm run frontend
+```
 
 Le frontend sera accessible sur :
 👉 http://localhost:3000
@@ -361,8 +372,10 @@ Também vou explicar claramente que le backend écoute sur le port 3001 et le fr
 
 📁 Dans le dossier ReVerte/ :
 
+```bash
 cd ReVerte
 npm start
+```
 
 	•	Cela démarre le backend Express.js
 	•	Terminal affiche :
@@ -385,11 +398,13 @@ Cela démarre le serveur React (Vite ou CRA selon config) sur http://localhost:3
 ⚠️ Assurez-vous que le script "frontend" est bien défini dans le package.json
 Sinon, lancez manuellement :
 
+
+```bash
 cd ReVerte
 cd frontend
 npm install
 npm start
-
+```
 
 ---
 
@@ -403,12 +418,17 @@ npm start
 
 ### 🐘 PostgreSQL (vérification)
 
+
+```bash
 psql -U postgres -d reverte
+```
 
 ### Puis dans psql :
 
-SELECT * FROM alertes ORDER BY date DESC LIMIT 5;
 
+```sql
+SELECT * FROM alertes ORDER BY date DESC LIMIT 5;
+```
 
 ---
 
@@ -416,21 +436,33 @@ SELECT * FROM alertes ORDER BY date DESC LIMIT 5;
 
 ### ✅ Backend (Terminal 1)
 
+
+```bash
 cd ReVerte
 npm start
+```
 
 ### ✅ Frontend (Terminal 2)
 
+
+```bash
 cd ReVerte
 npm run frontend
+```
 
 ### ✅ PostgreSQL (vérification)
 
+
+```bash
 psql -U postgres -d reverte
+```
 
 ### Puis dans psql :
 
+
+```sql
 SELECT * FROM alertes ORDER BY date DESC LIMIT 5;
+```
 
 ### ✅ Tester les alertes avec MQTT Explorer + HiveMQ (instructions à la ligne 212)
 
