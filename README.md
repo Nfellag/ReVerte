@@ -87,33 +87,38 @@ backend/
 
 ---
 
+
 ## 🐘 Initialisation de la base de données PostgreSQL
 
-### 1. 📄 Création des tables et de l’utilisateur
+### 📄 Création des tables et de l’utilisateur
 
-Le fichier `init_db.sql` fournit dans le projet permet de créer :
+Le fichier init_db.sql (présent à la racine du projet) permet de créer :
+	•	La base de données reverte
+	•	L’utilisateur postgres avec le mot de passe postgres
+	•	Les 4 tables nécessaires : capteurs, mesures, alertes, utilisateurs
 
-- La base de données `reverte`
-- L’utilisateur `postgres` avec le mot de passe `postgres`
-- Les 4 tables nécessaires : `capteurs`, `mesures`, `alertes`, `utilisateurs`
+### Étapes :
+#### 1.	Ouvrir un terminal
 
-#### Étapes :
+#### 2.	Se placer dans le dossier /ReVerte :
 
-1. Ouvrir un terminal
-2. Se placer dans le dossier `/backend`
-3. Lancer la commande suivante :
+```bash
+cd ReVerte
+```
+
+#### 3.	Lancer la commande suivante pour initialiser la base :
 
 ```bash
 psql -U postgres -f init_db.sql
 ```
 
-4. Copier le fichier `.env.example` vers `.env` :
+#### 4.	Copier le fichier .env.example vers .env :
 
 ```bash
 cp .env.example .env
 ```
 
-5. Lancer le backend :
+#### 5.	Installer les dépendances et lancer le backend :
 
 ```bash
 npm install
