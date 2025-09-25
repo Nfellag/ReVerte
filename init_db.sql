@@ -35,11 +35,12 @@ CREATE TABLE alertes (
   date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Table : utilisateurs
+-- Nouvelle table : utilisateurs
 CREATE TABLE utilisateurs (
   id SERIAL PRIMARY KEY,
-  nom TEXT,
-  type TEXT,
-  preferences JSONB,
-  notifications BOOLEAN
+  nom TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  age INT,
+  gender TEXT CHECK (gender IN ('homme','femme')),
+  password TEXT NOT NULL
 );

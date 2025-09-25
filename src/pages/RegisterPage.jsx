@@ -21,20 +21,7 @@ export default function RegisterPage() {
   const toast = useToast();
   const navigate = useNavigate();
 
-  const handleRegister = () => {
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-
-    if (users.find((u) => u.preferences.email === email)) {
-      toast({
-        title: "Erreur",
-        description: "Cet email est déjà utilisé",
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-      return;
-    }
-
+  const handleRegister = async () => {
     if (password !== confirmPassword) {
       toast({
         title: "Erreur",
@@ -57,68 +44,62 @@ export default function RegisterPage() {
       return;
     }
 
-    const newUser = {
-      nom: name,
-      type: "citoyen",
-      preferences: { email, password, gender, age },
-      notifications: true,
-    };
+    try {
+      const res = await fetch("http://localhost:3001/api/utilisateurs", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nom: name,
+          email,
+          age,
+          gender,
+          password,
+        }),
+      });
 
-    users.push(newUser);
-    localStorage.setItem("users", JSON.stringify(users));
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Erreur d'inscription");
+      }
 
-    localStorage.setItem("token", "fake-jwt-token");
-    localStorage.setItem("currentUser", JSON.stringify(newUser));
+      const newUser = await res.json();
 
-    toast({
-      title: "Inscription réussie",
-      status: "success",
-      duration: 2000,
-      isClosable: true,
-    });
+      localStorage.setItem("token", "fake-jwt-token");
+      localStorage.setItem("currentUser", JSON.stringify(newUser));
 
-    navigate("/dashboard");
+      toast({
+        title: "Inscription réussie",
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+      });
+
+      navigate("/dashboard");
+    } catch (err) {
+      toast({
+        title: "Erreur",
+        description: err.message,
+        status: "error",
+        duration: 3000,
+        isClosable: true,
+      });
+    }
   };
 
   return (
     <Box p={10} textAlign="center">
       <VStack spacing={4}>
         <Heading>Inscription</Heading>
-        <Input
-          placeholder="Nom"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <Input
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <Input placeholder="Nom" value={name} onChange={(e) => setName(e.target.value)} />
+        <Input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <Select value={gender} onChange={(e) => setGender(e.target.value)}>
           <option value="homme">Homme</option>
           <option value="femme">Femme</option>
         </Select>
-        <Input
-          type="number"
-          placeholder="Âge"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-        />
-        <Input
-          type="password"
-          placeholder="Mot de passe"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Input
-          type="password"
-          placeholder="Confirmer le mot de passe"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        <Button colorScheme="blue" onClick={handleRegister}>
-          S'inscrire
-        </Button>
+        <Input type="number" placeholder="Âge" value={age} onChange={(e) => setAge(e.target.value)} />
+        <Input type="password" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <Input type="password" placeholder="Confirmer le mot de passe" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+        <Button colorScheme="blue" onClick={handleRegister}>S'inscrire</Button>
       </VStack>
     </Box>
   );

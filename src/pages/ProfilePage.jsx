@@ -21,35 +21,32 @@ export default function ProfilePage() {
     }
   }, [navigate]);
 
-  // Charger l'utilisateur courant
   const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {
     nom: "John Doe",
-    type: "citoyen",
-    preferences: { email: "john@example.com", gender: "homme", age: 30 },
-    notifications: true,
+    email: "john@example.com",
+    age: 30,
+    gender: "homme",
+    password: "",
   };
 
   const [name, setName] = useState(currentUser.nom);
-  const [email, setEmail] = useState(currentUser.preferences.email);
-  const [gender, setGender] = useState(currentUser.preferences.gender || "homme");
-  const [age, setAge] = useState(currentUser.preferences.age || 25);
-  const [notifications, setNotifications] = useState(currentUser.notifications);
+  const [email, setEmail] = useState(currentUser.email);
+  const [gender, setGender] = useState(currentUser.gender);
+  const [age, setAge] = useState(currentUser.age);
 
   const handleSave = () => {
     const updatedUser = {
       ...currentUser,
       nom: name,
-      preferences: { ...currentUser.preferences, email, gender, age },
-      notifications,
+      email,
+      gender,
+      age,
     };
 
     localStorage.setItem("currentUser", JSON.stringify(updatedUser));
 
-    // Met aussi à jour la liste globale
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    const idx = users.findIndex(
-      (u) => u.preferences.email === currentUser.preferences.email
-    );
+    const idx = users.findIndex((u) => u.email === currentUser.email);
     if (idx !== -1) {
       users[idx] = updatedUser;
       localStorage.setItem("users", JSON.stringify(users));
@@ -67,29 +64,14 @@ export default function ProfilePage() {
     <Box p={10} textAlign="center">
       <VStack spacing={4}>
         <Heading>Mon profil</Heading>
-        <Input
-          placeholder="Nom"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <Input
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+        <Input placeholder="Nom" value={name} onChange={(e) => setName(e.target.value)} />
+        <Input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
         <Select value={gender} onChange={(e) => setGender(e.target.value)}>
           <option value="homme">Homme</option>
           <option value="femme">Femme</option>
         </Select>
-        <Input
-          type="number"
-          placeholder="Âge"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
-        />
-        <Button colorScheme="green" onClick={handleSave}>
-          Sauvegarder
-        </Button>
+        <Input type="number" placeholder="Âge" value={age} onChange={(e) => setAge(e.target.value)} />
+        <Button colorScheme="green" onClick={handleSave}>Sauvegarder</Button>
       </VStack>
     </Box>
   );

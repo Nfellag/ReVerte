@@ -18,9 +18,7 @@ export default function LoginPage() {
 
   const handleLogin = () => {
     const users = JSON.parse(localStorage.getItem("users")) || [];
-    const user = users.find(
-      (u) => u.preferences.email === email && u.preferences.password === password
-    );
+    const user = users.find((u) => u.email === email && u.password === password);
 
     if (!user) {
       toast({
@@ -50,20 +48,9 @@ export default function LoginPage() {
     <Box p={10} textAlign="center">
       <VStack spacing={4}>
         <Heading>Connexion</Heading>
-        <Input
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <Input
-          type="password"
-          placeholder="Mot de passe"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button colorScheme="blue" onClick={handleLogin}>
-          Se connecter
-        </Button>
+        <Input placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+        <Input type="password" placeholder="Mot de passe" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <Button colorScheme="blue" onClick={handleLogin}>Se connecter</Button>
 
         <Text>Pas encore de compte ?</Text>
         <Button colorScheme="green" variant="outline" onClick={() => navigate("/register")}>
