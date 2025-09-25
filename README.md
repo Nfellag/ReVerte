@@ -57,6 +57,7 @@ cp .env.example .env
 
 Puis, remplir le fichier .env avec ce contenu :
 
+```env
 PORT=3001
 
 # PostgreSQL
@@ -78,7 +79,7 @@ HUMIDITY_THRESHOLD=80
 MAIL_USER=pharosi.raphael@gmail.com
 MAIL_PASS=aohk wama vhdv bghf
 MAIL_TO=pharosi.raphael@gmail.com,nourfellag@outlook.fr,rafikzeffane59@gmail.com,nene.almeida78@gmail.com
-
+```
 
 ---
 
